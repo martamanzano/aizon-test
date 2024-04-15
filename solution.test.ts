@@ -1,7 +1,8 @@
 // import { createSolutionHandler, deleteSolutionHandler, modifySolutionHandler } from './solution';
 const { createSolutionHandler, deleteSolutionHandler, modifySolutionHandler } = require('./solution');
 const { DynamoDB } = require('aws-sdk');
-
+import { APIGatewayEvent } from "aws-lambda";
+ 
 jest.mock('aws-sdk', () => {
   const DocumentClient = {
     put: jest.fn().mockReturnThis(),
@@ -13,13 +14,13 @@ jest.mock('aws-sdk', () => {
 });
 
 describe('Lambda Functions', () => {
-  let event;
-  let context;
+  let event: APIGatewayEvent;
+  let context: any;
 
-  beforeEach(() => {
-    event = {};
-    context = {};
-  });
+  // beforeEach(() => {
+  //   event = APIGatewayEvent();
+  //   context = {};
+  // });
 
   afterEach(() => {
     jest.clearAllMocks();
